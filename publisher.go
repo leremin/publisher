@@ -59,8 +59,8 @@ func version() string {
 	return fmt.Sprintf("%s.%d", now.Format("06.1.2"), seconds)
 }
 
-func writeXml(path string, asm Assembly) {
-	file, _ := os.Create(path.Join(path, XmlFileName))
+func writeXml(rootPath string, asm Assembly) {
+	file, _ := os.Create(path.Join(rootPath, XmlFileName))
 	file.WriteString(xml.Header)
 	xmlWriter := io.Writer(file)
 	encoder := xml.NewEncoder(xmlWriter)
@@ -85,6 +85,6 @@ func main() {
 	
 		writeXml(rootPath, asm)
 	} else {
-		mft.Println("Usage publisher.exe %rootDir%")
+		fmt.Println("Usage publisher.exe %rootDir%")
 	}
 }
